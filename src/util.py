@@ -27,6 +27,16 @@ def is_prime(n):
         f += 6
     return True
 
+def primes_upto(n):
+    l = range(2,n)
+    i = 0
+    maxFactor = floor(sqrt(n))
+    while l[i]<=maxFactor:
+        f = l[i]
+        l = [x for x in l if x <= f or not x%f==0]
+        i += 1
+    return l
+
 class Primes:
     def __getitem__(self, n):
         '''Get the nth prime number (indexed from zero)'''
@@ -42,7 +52,8 @@ class Primes:
         
         
         
-
+if __name__=='__main__':
+    print primes_upto(2000000)
     
     
       

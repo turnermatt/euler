@@ -4,6 +4,7 @@ Created on Mar 11, 2009
 @author: mturner
 '''
 from time import clock
+import math
 
 start = clock()
 primes = [2]
@@ -17,7 +18,7 @@ while len(primes) < 10001:
             break
     if is_prime: 
         primes.append(n)
-    n += 1
+    n += 2
         
 finish = clock()
 print primes[len(primes)-1]

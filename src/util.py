@@ -4,6 +4,7 @@ Created on Mar 11, 2009
 @author: mturner
 '''
 from math import sqrt, floor
+from time import clock, sleep
 
 def is_prime(n):
     if n<=1:
@@ -51,9 +52,29 @@ class Primes:
         return candidate
         
         
+class Timer:
+    
+    def start(self):
+        self.start_time = clock()
+        
+    def stop(self):
+        self.stop_time = clock()
+        
+    def __str__(self):
+        if (self.start_time==0 or self.stop_time==0):
+            return "error"
+        diff = self.stop_time - self.start_time
+        return "%0.2f seconds" % diff
+        
         
 if __name__=='__main__':
-    print primes_upto(2000000)
+    t = Timer()
+    t.start()
+    [2*x for x in range(1000000)]
+    t.stop()
+    print t
+    
+    
     
     
       

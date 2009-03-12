@@ -29,6 +29,7 @@ def is_prime(n):
     return True
 
 def primes_upto(n):
+    if n <= 2: return []
     l = range(2,n)
     i = 0
     maxFactor = floor(sqrt(n))

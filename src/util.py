@@ -28,6 +28,38 @@ def is_prime(n):
         f += 6
     return True
 
+
+def get_proper_divisors(n):
+    if n < 2: return []
+    divisors = [1]
+    sqrt = n**.5    
+    for i in range(2,int(sqrt + 1)):
+        if n%i == 0:
+            divisors.extend([i,int(n/i)])
+    
+    return set(divisors)
+
+def sum_of_divisors(n): # e.g. n = 5
+    summ = 1 # don't clobber sum()
+    p = 2 
+    while p*p <= n and n > 1:
+        if n % p == 0: 
+            j = p*p 
+            n = n/p 
+            while n%p == 0: 
+                j = j * p 
+                n = n/p 
+            summ = summ * (j-1) 
+            summ = summ / (p-1) 
+        if p==2: p = 3
+        else: p = p + 2 
+    if n > 1: summ = summ * (n+1)
+    return summ     
+            
+
+def sum_of_proper_divisors(n):
+    return sum_of_divisors(n) - n
+
 def primes_upto(n):
     if n <= 2: return []
     l = range(2,n)
@@ -69,11 +101,10 @@ class Timer:
         
         
 if __name__=='__main__':
-    t = Timer()
-    t.start()
-    [2*x for x in range(1000000)]
-    t.stop()
-    print t
+    for n in range(1000):
+        if n%100 == 0: 
+            print n
+            print n, sum_of_divisors(n) 
     
     
     

@@ -106,7 +106,42 @@ if __name__=='__main__':
             print n
             print n, sum_of_divisors(n) 
     
+class Permutations:
+    perms = []
     
+    def __getitem__(self, n):
+        return self.perms[n]
+    
+    def __len__(self):
+        return len(self.perms)
+    
+    def __init__(self, things):
+        self.permute(things)
+    
+    def swap(self, v, i, j):
+        t = v[i]
+        v[i] = v[j]
+        v[j] = t
+        return v
+    
+    def rotateLeft(self, v, start):
+        tmp = v[start]
+        for i in range(start,len(v)-1):
+            v[i] = v[i+1]
+        v[len(v)-1] = tmp
+        return v
+        
+    def permute(self, v, start=0):
+        tmp = []
+        tmp[:] = v[:]
+        self.perms.append(tmp)
+        n = len(v)
+        if start < n:
+            for i in range(n-2, start-1, -1):
+                for j in range(i+1,n):
+                    self.swap(v,i,j)
+                    self.permute(v,i+1)
+                self.rotateLeft(v, i)
     
     
       
